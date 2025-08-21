@@ -81,7 +81,7 @@ export const ResultCard: React.FC<ResultCardProps> = ({ student }) => {
             <Hash className="w-6 h-6 text-green-600" />
             <div className="flex-1 text-right">
               <p className="text-sm text-gray-600 mb-1">رقم الطالب</p>
-              <p className="text-xl font-bold text-gray-800">{student.id}</p>
+              <p className="text-xl font-bold text-gray-800">{student.id || student.no || 'غير محدد'}</p>
             </div>
           </div>
 
@@ -91,10 +91,10 @@ export const ResultCard: React.FC<ResultCardProps> = ({ student }) => {
               <p className="text-sm text-gray-600 mb-1">الفئة</p>
               <span
                 className={`inline-block px-3 py-1 rounded-full text-sm font-semibold ${getCategoryColor(
-                  student.category
+                  student.category?.toString() || 'غير محدد'
                 )}`}
               >
-                {student.category}
+                {student.category || 'غير محدد'}
               </span>
             </div>
           </div>

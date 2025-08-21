@@ -32,11 +32,14 @@ export default function SearchSection({ students, onSearch, isDarkMode = false }
     setIsLoading(true);
     
     try {
+      console.log('Searching for term:', searchTerm.trim());
       const results = await searchResults(searchTerm.trim());
+      console.log('Search completed, results:', results);
       
       if (results && results.length > 0) {
         onSearch(results[0]); // إرجاع أول نتيجة
       } else {
+        console.log('No results found');
         onSearch(null);
       }
     } catch (error: any) {

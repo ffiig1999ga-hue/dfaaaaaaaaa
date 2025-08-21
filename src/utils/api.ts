@@ -202,24 +202,32 @@ export const searchResults = async (searchTerm: string): Promise<Result[]> => {
     const { data, error } = await supabase
       .from('reciterResults')
       .select('*')
-      .ilike('name', `%${searchTerm}%`)
+      .ilike('name', `%${searchTerm.trim()}%`)
       .order('grade', { ascending: false });
 
     if (error) throw error;
     
     console.log('Search results:', data);
     
+    if (!data || data.length === 0) {
+      console.log('No results found for:', searchTerm);
+      return [];
+    }
+    
     // إضافة الترتيب للنتائج
-    const rankedResults = (data || []).map((result, index) => ({
+    const rankedResults = data.map((result, index) => ({
       ...result,
       id: result.no, // استخدام العمود no كـ id
+      name: result.name || '', // التأكد من وجود الاسم
+      category: result.category?.toString() || '', // تحويل الفئة إلى نص
+      grade: result.grade || 0, // التأكد من وجود الدرجة
       rank: index + 1
     }));
     
     return rankedResults;
   } catch (error) {
     console.error('Error searching results:', error);
-    throw error;
+    throw new Error('حدث خطأ أثناء البحث. يرجى المحاولة مرة أخرى.');
   }
 };
 

@@ -12,7 +12,7 @@ interface AllResultsSectionProps {
 export const AllResultsSection: React.FC<AllResultsSectionProps> = ({ students, isDarkMode = false }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
-  const [contestStarted] = useState(true); // المسابقة بدأت والنتائج متاحة
+  const [contestStarted] = useState(true); // النتائج متاحة الآن
   const [results, setResults] = useState<Result[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   
@@ -64,7 +64,7 @@ export const AllResultsSection: React.FC<AllResultsSectionProps> = ({ students, 
                 </p>
               </div>
             ) : results.length === 0 ? (
-              /* Contest not started message */
+              /* No results message */
               <div className="max-w-2xl mx-auto">
                 <div className={`border-2 rounded-3xl p-8 shadow-2xl relative overflow-hidden transition-colors duration-300 ${
                   isDarkMode 
@@ -86,7 +86,7 @@ export const AllResultsSection: React.FC<AllResultsSectionProps> = ({ students, 
                     </div>
                     
                     <h3 className={`text-3xl md:text-4xl font-bold mb-4 animate-fadeInScale ${isDarkMode ? 'text-orange-200' : 'text-orange-800'}`}>
-                      النتائج ستُنشر قريباً إن شاء الله
+                      لا توجد نتائج متاحة حالياً
                     </h3>
                     
                     <div className={`backdrop-blur-sm rounded-2xl p-6 mb-6 border transition-colors duration-300 ${
@@ -95,10 +95,10 @@ export const AllResultsSection: React.FC<AllResultsSectionProps> = ({ students, 
                         : 'bg-white/70 border-orange-100'
                     }`}>
                       <p className={`text-lg md:text-xl leading-relaxed mb-4 ${isDarkMode ? 'text-orange-200' : 'text-orange-700'}`}>
-                        جاري تصحيح الاختبارات وستُعلن النتائج فور الانتهاء
+                        قد تكون النتائج لم تُرفع بعد أو هناك مشكلة في التحميل
                       </p>
                       <p className={`font-semibold ${isDarkMode ? 'text-orange-300' : 'text-orange-600'}`}>
-                        ترقبوا الإعلان عن النتائج في الأيام القادمة
+                        يرجى المحاولة مرة أخرى أو التواصل مع إدارة المسابقة
                       </p>
                     </div>
                     
@@ -109,8 +109,8 @@ export const AllResultsSection: React.FC<AllResultsSectionProps> = ({ students, 
                           : 'bg-gradient-to-r from-blue-100 to-blue-200 border-blue-200'
                       }`}>
                         <Calendar className={`w-8 h-8 mx-auto mb-2 animate-bounce-slow ${isDarkMode ? 'text-blue-400' : 'text-blue-600'}`} />
-                        <h4 className={`font-bold mb-1 ${isDarkMode ? 'text-blue-200' : 'text-blue-800'}`}>تابع الجدول</h4>
-                        <p className={`text-sm ${isDarkMode ? 'text-blue-300' : 'text-blue-700'}`}>راجع مواعيد الاختبارات</p>
+                        <h4 className={`font-bold mb-1 ${isDarkMode ? 'text-blue-200' : 'text-blue-800'}`}>البحث الفردي</h4>
+                        <p className={`text-sm ${isDarkMode ? 'text-blue-300' : 'text-blue-700'}`}>جرب البحث عن اسمك أعلاه</p>
                       </div>
                       
                       <div className={`p-4 rounded-xl border transition-colors duration-300 ${
@@ -119,8 +119,8 @@ export const AllResultsSection: React.FC<AllResultsSectionProps> = ({ students, 
                           : 'bg-gradient-to-r from-green-100 to-green-200 border-green-200'
                       }`}>
                         <AlertCircle className={`w-8 h-8 mx-auto mb-2 animate-pulse ${isDarkMode ? 'text-green-400' : 'text-green-600'}`} />
-                        <h4 className={`font-bold mb-1 ${isDarkMode ? 'text-green-200' : 'text-green-800'}`}>استعد للمسابقة</h4>
-                        <p className={`text-sm ${isDarkMode ? 'text-green-300' : 'text-green-700'}`}>احفظ الأجزاء المطلوبة</p>
+                        <h4 className={`font-bold mb-1 ${isDarkMode ? 'text-green-200' : 'text-green-800'}`}>تواصل معنا</h4>
+                        <p className={`text-sm ${isDarkMode ? 'text-green-300' : 'text-green-700'}`}>للاستفسار عن النتائج</p>
                       </div>
                     </div>
                     
@@ -131,7 +131,7 @@ export const AllResultsSection: React.FC<AllResultsSectionProps> = ({ students, 
                           : 'bg-gradient-to-r from-amber-100 to-orange-100 border-amber-200'
                       }`}>
                         <Clock className={`w-5 h-5 animate-tick ${isDarkMode ? 'text-amber-400' : 'text-amber-600'}`} />
-                        <span className={`font-semibold ${isDarkMode ? 'text-amber-200' : 'text-amber-800'}`}>سيتم الإعلان عن النتائج فور انتهاء التصحيح</span>
+                        <span className={`font-semibold ${isDarkMode ? 'text-amber-200' : 'text-amber-800'}`}>النتائج متاحة للبحث الفردي أعلاه</span>
                       </div>
                     </div>
                   </div>
